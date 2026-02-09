@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Winter2727b • Sticky Vibes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      padding: 5vw 4vw;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,182,193,0.08) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(173,216,230,0.09) 0%, transparent 25%);
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    header {
+      text-align: center;
+      margin: 2vh 0 6vh;
+    }
+
+    h1 {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: clamp(4rem, 15vw, 10rem);
+      color: #ff6b6b;
+      text-shadow: 4px 4px 0 #ffe66d, 8px 8px 0 #95e1d3;
+      letter-spacing: -2px;
+      line-height: 0.85;
+      margin-bottom: 0.1em;
+
+      /* Pastikan font & rotate asal kekal */
+      transform: rotate(-2deg);
+      opacity: 0;
+      animation: appearHeader 1.5s ease-out forwards;
+    }
+
+    .subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.1rem, 4vw, 1.4rem);
+      color: #555;
+      font-weight: 300;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: appearSubtitle 1.6s ease-out 0.4s forwards;
+    }
+
+    /* Animasi untuk h1 - gentle entrance tanpa ganggu font */
+    @keyframes appearHeader {
+      0% {
+        opacity: 0;
+        transform: rotate(-5deg) scale(0.9) translateY(20px);
+      }
+      50% {
+        opacity: 0.8;
+        transform: rotate(-1deg) scale(1.04) translateY(-8px);
+      }
+      100% {
+        opacity: 1;
+        transform: rotate(-2deg) scale(1) translateY(0);
+      }
+    }
+
+    /* Animasi subtitle - fade & slide up */
+    @keyframes appearSubtitle {
+      0%   { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .sticky-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px 24px;
+      padding: 1rem 0;
+    }
+
+    .sticky {
+      background: #fffef8;
+      padding: 1.6rem 1.4rem;
+      border-radius: 6px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.12), inset 0 -2px 5px rgba(0,0,0,0.03);
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.04);
+      font-family: 'Reenie Beanie', cursive;
+      font-size: clamp(1.4rem, 4.5vw, 1.65rem);
+      line-height: 1.4;
+      min-height: 180px;
+      transition: all 0.3s ease;
+    }
+
+    .sticky:hover {
+      transform: scale(1.04) rotate(1.5deg);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.16);
+    }
+
+    /* Warna sticky */
+    .sticky.pink     { background: #ffccd5; transform: rotate(1.8deg); }
+    .sticky.yellow   { background: #fff9c4; transform: rotate(-1.2deg); }
+    .sticky.mint     { background: #d4f4dd; transform: rotate(2deg);   }
+    .sticky.blue     { background: #d3f0ff; transform: rotate(-2deg);  }
+    .sticky.lavender { background: #f0e6ff; transform: rotate(2.8deg); }
+    .sticky.peach    { background: #ffe8d6; transform: rotate(-0.7deg); }
+    .sticky.orange   { background: #ffdab9; transform: rotate(1.2deg); }
+
+    .sticky .title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.9rem;
+      color: #222;
+      border-bottom: 2px dashed currentColor;
+      padding-bottom: 0.4rem;
+      display: inline-block;
+    }
+
+    .sticky::before {
+      content: "";
+      position: absolute;
+      width: 35%;
+      height: 6px;
+      background: rgba(0,0,0,0.06);
+      top: 8px;
+      left: 32%;
+      border-radius: 3px;
+    }
+
+    footer {
+      text-align: center;
+      margin: 10vh 0 4vh;
+      color: #777;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 6vw 5vw; }
+      .sticky-board { grid-template-columns: 1fr; gap: 28px; }
+      .sticky { min-height: 160px; padding: 1.4rem 1.3rem; font-size: clamp(1.35rem, 5vw, 1.55rem); }
+      h1 { transform: rotate(-1.8deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Winter2727b</h1>
+      <p class="subtitle">notes • mood • random thoughts • 27 vibes</p>
+    </header>
+
+    <div class="sticky-board">
+
+      <div class="sticky pink">
+        <div class="title">Currently Obsessed</div>
+        winter sunset, iced matcha, hoodie gede jam 3 sore, voice note 3 menit
+      </div>
+
+      <div class="sticky yellow">
+        <div class="title">Wishlist 2026</div>
+        ・ Polaroid lagi<br>
+        ・ Café buku pagi-pagi<br>
+        ・ Bikin zine sendiri<br>
+        ・ Nabung buat Jepang lagi
+      </div>
+
+      <div class="sticky mint">
+        <div class="title">Mood Booster</div>
+        Lagu wajib:<br><br>
+        • About You — The 1975<br>
+        • Sofia — Clairo<br>
+        • Glue Song — beabadoobee
+      </div>
+
+      <div class="sticky blue">
+        <div class="title">Quote Bulan Ini</div>
+        "Kadang hal paling menyembuhkan adalah mengingatkan diri sendiri berulang-ulang: orang lain juga merasakan ini." —Andrea Gibson
+      </div>
+
+      <div class="sticky lavender">
+        <div class="title">Link sering dibuka</div>
+        ・ spotify: open.spotify.com/user/winter2727b<br>
+        ・ pinterest: pinterest.com/winter2727b<br>
+        ・ letterboxd: letterboxd.com/winter2727b<br>
+        ・ ig: @winter2727b (private story only ya)
+      </div>
+
+      <div class="sticky peach">
+        <div class="title">Reminder buat diri</div>
+        boleh capek • boleh nangis • boleh ga produktif 1–2 hari.<br><br>
+        tapi pelan-pelan balik lagi ya ke versi yang lebih sayang sama diri sendiri.
+      </div>
+
+      <div class="sticky orange">
+        <div class="title">Muzik Favorit ♫</div>
+        playlist yang selalu repeat:<br><br>
+        ・ "About You" — The 1975<br>
+        ・ "Moon Song" — Phoebe Bridgers<br>
+        ・ "Lover, You Should've Come Over" — Jeff Buckley<br>
+        ・ "First Love / Late Spring" — Mitski<br>
+        ・ "Pink + White" — Frank Ocean<br><br>
+        currently on heavy rotation: lagu-lagu slow + dreamy malam-malam ☾
+      </div>
+
+    </div>
+
+    <footer>
+      made with ♡ & sticky notes aesthetic • Winter2727b • 2026
+    </footer>
+  </div>
+
+</body>
+</html>
