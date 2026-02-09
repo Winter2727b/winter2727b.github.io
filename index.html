@@ -120,28 +120,19 @@
       font-size: clamp(1.35rem, 4vw, 1.65rem);
       line-height: 1.45;
       position: relative;
-      transition: all 0.4s ease;
+      transition: all 0.25s ease;
       color: var(--text);
-
-      /* ======================================
-         Bagian penting: cegah copy teks
-      ====================================== */
-      user-select: none;          /* blokir seleksi teks */
-      -webkit-user-select: none;  /* Safari/iOS */
-      -moz-user-select: none;     /* Firefox */
-      -ms-user-select: none;      /* IE/Edge */
-      pointer-events: auto;       /* tetap boleh klik toggle kalau ada */
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-touch-callout: none;
     }
 
-    /* Biarkan title tetap boleh dipilih kalau perlu (opsional) */
-    .sticky .title {
-      user-select: text;          /* title boleh disalin kalau mahu */
-      -webkit-user-select: text;
-    }
-
-    /* Blokir menu context (klik kanan) di sticky note */
-    .sticky {
-      -webkit-touch-callout: none; /* iOS long press */
+    .sticky:active {
+      transform: scale(0.96) rotate(0.5deg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     .sticky:hover {
@@ -156,7 +147,6 @@
     .sticky.blue     { background: #d3f0ff; }
     .sticky.lavender { background: #f0e6ff; }
     .sticky.peach    { background: #ffe8d6; }
-    .sticky.orange   { background: #ffdab9; }
 
     [data-theme="dark"] .sticky.pink     { background: #c47a8f; }
     [data-theme="dark"] .sticky.yellow   { background: #c9b56b; }
@@ -164,7 +154,6 @@
     [data-theme="dark"] .sticky.blue     { background: #8aa8c2; }
     [data-theme="dark"] .sticky.lavender { background: #b0a0d0; }
     [data-theme="dark"] .sticky.peach    { background: #d0a68f; }
-    [data-theme="dark"] .sticky.orange   { background: #d0a070; }
 
     .sticky .title {
       font-family: 'Poppins', sans-serif;
@@ -175,6 +164,7 @@
       border-bottom: 2px dashed currentColor;
       padding-bottom: 0.4rem;
       display: inline-block;
+      user-select: text;
     }
 
     footer {
@@ -261,26 +251,19 @@
         boleh capek • boleh nangis • boleh ga produktif 1–2 hari.<br><br>
         tapi pelan-pelan balik lagi ya ke versi yang lebih sayang sama diri sendiri.
       </div>
-
-      <div class="sticky orange">
-        <div class="title">Muzik Favorit ♫</div>
-        playlist yang selalu repeat:<br><br>
-        ・ "About You" — The 1975<br>
-        ・ "Moon Song" — Phoebe Bridgers<br>
-        ・ "Lover, You Should've Come Over" — Jeff Buckley<br>
-        ・ "First Love / Late Spring" — Mitski<br>
-        ・ "Pink + White" — Frank Ocean<br><br>
-        currently on heavy rotation: lagu-lagu slow + dreamy malam-malam ☾
-      </div>
     </div>
 
     <footer>
-      made with sticky notes • Winter2727b • 2026
+      made with ♡ & sticky notes aesthetic • Winter2727b • 2026
     </footer>
   </div>
 
+  <audio id="click-sound" preload="auto">
+    <source src="https://assets.codepen.io/605876/paper-click-short.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
-    // Theme toggle (tanpa localStorage)
+    // Theme toggle
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
@@ -293,6 +276,20 @@
         const next = current === 'dark' ? 'light' : 'dark';
         body.setAttribute('data-theme', next);
         toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+      });
+    }
+
+    // Sound effect ketika sticky ditekan (kecuali kalau ada link, tapi sekarang tak ada link)
+    const clickSound = document.getElementById('click-sound');
+    const stickies = document.querySelectorAll('.sticky');
+
+    if (clickSound && stickies.length > 0) {
+      stickies.forEach(sticky => {
+        sticky.addEventListener('click', () => {
+          clickSound.currentTime = 0;
+          clickSound.volume = 0.4;
+          clickSound.play().catch(() => {});
+        });
       });
     }
 
@@ -354,4 +351,3 @@
 
 </body>
 </html>
-
