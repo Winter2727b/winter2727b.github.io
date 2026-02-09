@@ -2,113 +2,126 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Winter2727b • Sticky Vibes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=Poppins:wght@300;400;500;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
-  
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', system-ui, sans-serif;
       color: #333;
-      padding: 4vw 5vw;
-      overflow-x: hidden; /* cegah scroll horizontal */
+      line-height: 1.5;
+      overflow-x: hidden;
       background-image:
         radial-gradient(circle at 10% 20%, rgba(255,182,193,0.08) 0%, transparent 20%),
         radial-gradient(circle at 90% 80%, rgba(173,216,230,0.09) 0%, transparent 25%);
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
+      padding: 0 1rem;
+      width: 100%;
     }
 
     header {
       text-align: center;
-      margin: 4vh 0 8vh;
+      padding: 2rem 0 3rem;
     }
 
     h1 {
       font-family: 'Inter', system-ui, sans-serif;
       font-weight: 800;
-      font-size: clamp(3rem, 12vw, 8rem);
-      letter-spacing: -0.04em;
+      font-size: clamp(2.5rem, 9vw, 6.5rem);
+      letter-spacing: -0.03em;
       color: #1a1a1a;
-      line-height: 0.9;
+      line-height: 0.95;
       transform: rotate(-2deg);
       opacity: 0;
       animation: appearHeader 1.5s ease-out forwards;
     }
 
     .subtitle {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 400;
-      font-size: clamp(1rem, 4vw, 1.3rem);
+      font-size: clamp(1rem, 3.5vw, 1.25rem);
       color: #555;
-      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(15px);
       animation: appearSubtitle 1.6s ease-out 0.4s forwards;
-      word-wrap: break-word;
+    }
+
+    @keyframes appearHeader {
+      0% { opacity: 0; transform: rotate(-5deg) scale(0.92) translateY(15px); }
+      50% { opacity: 0.85; transform: rotate(-1deg) scale(1.03) translateY(-6px); }
+      100% { opacity: 1; transform: rotate(-2deg) scale(1) translateY(0); }
+    }
+
+    @keyframes appearSubtitle {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .sticky-board {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px 22px;
-      padding: 1rem 0;
-      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem 1.5rem;
+      padding: 1rem 0 3rem;
+      justify-items: center;
     }
 
     .sticky {
       background: #fffef8;
-      padding: 1.8rem 1.5rem;
+      padding: 1.5rem 1.3rem;
       border-radius: 8px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.12), inset 0 -2px 6px rgba(0,0,0,0.03);
-      position: relative;
-      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1), inset 0 -2px 6px rgba(0,0,0,0.03);
+      width: 100%;
+      max-width: 320px;
+      min-height: 180px;
       font-family: 'Reenie Beanie', cursive;
-      font-size: clamp(1.35rem, 4.8vw, 1.6rem);
+      font-size: clamp(1.35rem, 4vw, 1.65rem);
       line-height: 1.45;
-      min-height: 200px;
-      transition: all 0.3s ease;
-      word-wrap: break-word; /* teks tidak terpotong */
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      word-break: break-word;
       overflow-wrap: break-word;
       hyphens: auto;
-      overflow: hidden;
     }
 
     .sticky:hover {
-      transform: scale(1.05) rotate(1.5deg);
-      box-shadow: 0 18px 35px rgba(0,0,0,0.18);
+      transform: scale(1.04) rotate(1.5deg);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
     }
 
-    /* Warna sticky */
-    .sticky.pink     { background: #ffccd5; transform: rotate(1.8deg); }
-    .sticky.yellow   { background: #fff9c4; transform: rotate(-1.2deg); }
-    .sticky.mint     { background: #d4f4dd; transform: rotate(2deg);   }
-    .sticky.blue     { background: #d3f0ff; transform: rotate(-2deg);  }
-    .sticky.lavender { background: #f0e6ff; transform: rotate(2.8deg); }
-    .sticky.peach    { background: #ffe8d6; transform: rotate(-0.7deg); }
+    /* Warna & rotasi */
+    .sticky.pink     { background: #ffccd5; transform: rotate(2deg); }
+    .sticky.yellow   { background: #fff9c4; transform: rotate(-1.5deg); }
+    .sticky.mint     { background: #d4f4dd; transform: rotate(1.8deg); }
+    .sticky.blue     { background: #d3f0ff; transform: rotate(-2deg); }
+    .sticky.lavender { background: #f0e6ff; transform: rotate(2.5deg); }
+    .sticky.peach    { background: #ffe8d6; transform: rotate(-1deg); }
     .sticky.orange   { background: #ffdab9; transform: rotate(1.2deg); }
 
     .sticky .title {
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      font-size: 1.05rem;
-      margin-bottom: 1rem;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
       color: #222;
       border-bottom: 2px dashed currentColor;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.4rem;
       display: inline-block;
     }
 
@@ -116,7 +129,7 @@
       content: "";
       position: absolute;
       width: 35%;
-      height: 7px;
+      height: 6px;
       background: rgba(0,0,0,0.07);
       top: 10px;
       left: 32%;
@@ -125,45 +138,32 @@
 
     footer {
       text-align: center;
-      margin: 12vh 0 6vh;
+      padding: 2rem 0 1.5rem;
       color: #777;
       font-size: 0.95rem;
       opacity: 0.9;
-      word-wrap: break-word;
     }
 
-    /* Animasi tetap sama */
-    @keyframes appearHeader {
-      0% { opacity: 0; transform: rotate(-5deg) scale(0.9) translateY(20px); }
-      50% { opacity: 0.8; transform: rotate(-1deg) scale(1.04) translateY(-8px); }
-      100% { opacity: 1; transform: rotate(-2deg) scale(1) translateY(0); }
-    }
-
-    @keyframes appearSubtitle {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Responsif khusus HP */
+    /* Media Queries - fine tuning */
     @media (max-width: 768px) {
-      body { padding: 6vw 5vw; }
-      header { margin: 3vh 0 6vh; }
+      body { padding: 3vw 4vw; }
       .sticky-board {
-        grid-template-columns: 1fr;
-        gap: 32px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem 1rem;
       }
-      .sticky {
-        min-height: 220px;
-        padding: 1.7rem 1.4rem;
-        font-size: clamp(1.4rem, 5.2vw, 1.7rem);
-      }
-      h1 { font-size: clamp(2.8rem, 11vw, 5.5rem); }
-      .subtitle { font-size: clamp(1rem, 4.5vw, 1.25rem); }
+      .sticky { max-width: none; padding: 1.3rem 1.1rem; }
     }
 
     @media (max-width: 480px) {
-      .sticky { padding: 1.5rem 1.3rem; min-height: 200px; }
-      .sticky .title { font-size: 1rem; }
+      header { padding: 1.5rem 0 2.5rem; }
+      h1 { font-size: clamp(2.2rem, 10vw, 4.5rem); }
+      .sticky-board { grid-template-columns: 1fr; gap: 1.8rem; }
+      .sticky { min-height: 160px; font-size: clamp(1.3rem, 4.8vw, 1.55rem); }
+    }
+
+    @media (min-width: 1200px) {
+      .sticky-board { gap: 2.2rem 2rem; }
+      .sticky { max-width: 340px; }
     }
   </style>
 </head>
@@ -176,7 +176,6 @@
     </header>
 
     <div class="sticky-board">
-
       <div class="sticky pink">
         <div class="title">Currently Obsessed</div>
         winter sunset, iced matcha, hoodie gede jam 3 sore, voice note 3 menit
@@ -227,7 +226,6 @@
         ・ "Pink + White" — Frank Ocean<br><br>
         currently on heavy rotation: lagu-lagu slow + dreamy malam-malam ☾
       </div>
-
     </div>
 
     <footer>
