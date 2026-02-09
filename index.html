@@ -128,10 +128,6 @@
       -moz-user-select: none;
       -ms-user-select: none;
       -webkit-touch-callout: none;
-
-      /* FIX UTAMA: hilangkan highlight biru ketika tap di HP */
-      -webkit-tap-highlight-color: transparent;
-      -webkit-tap-highlight-color: rgba(0,0,0,0); /* backup untuk sesetengah versi browser */
     }
 
     .sticky:active {
@@ -264,10 +260,12 @@
 
   <audio id="click-sound" preload="auto">
     <source src="https://assets.codepen.io/605876/paper-click-short.mp3" type="audio/mpeg">
+    <!-- Alternatif jika link atas tak berfungsi -->
+    <!-- <source src="https://freesound.org/data/previews/612/612611_5674468-lq.mp3" type="audio/mpeg"> -->
   </audio>
 
   <script>
-    // Theme toggle
+    // Theme toggle (tanpa simpan localStorage)
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
@@ -290,14 +288,15 @@
     if (clickSound && stickies.length > 0) {
       stickies.forEach(sticky => {
         sticky.addEventListener('click', () => {
+          // Reset dan mainkan semula (supaya boleh bertindih cepat)
           clickSound.currentTime = 0;
-          clickSound.volume = 0.4;
-          clickSound.play().catch(() => {});
+          clickSound.volume = 0.4; // agak senyap supaya tak ganggu
+          clickSound.play().catch(() => {}); // catch error autoplay policy
         });
       });
     }
 
-    // Partikel bintang
+    // Partikel bintang (sama seperti sebelumnya)
     const canvas = document.getElementById('stars-canvas');
     if (canvas && canvas.getContext) {
       const ctx = canvas.getContext('2d');
