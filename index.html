@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=Poppins:wght@300;400;500;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 
-  <!-- Easter egg tetap ada -->
   <!-- meta-data: x-winter2727b-ref=SGV5IGl5eWFzLCBqdWdhIGthdGEtbmthdGEga2F1IG5hbWEgZGkgc2luaSA6KQ== -->
 
   <style>
@@ -122,9 +121,27 @@
       line-height: 1.45;
       position: relative;
       transition: all 0.4s ease;
-      word-break: break-word;
-      overflow-wrap: break-word;
       color: var(--text);
+
+      /* ======================================
+         Bagian penting: cegah copy teks
+      ====================================== */
+      user-select: none;          /* blokir seleksi teks */
+      -webkit-user-select: none;  /* Safari/iOS */
+      -moz-user-select: none;     /* Firefox */
+      -ms-user-select: none;      /* IE/Edge */
+      pointer-events: auto;       /* tetap boleh klik toggle kalau ada */
+    }
+
+    /* Biarkan title tetap boleh dipilih kalau perlu (opsional) */
+    .sticky .title {
+      user-select: text;          /* title boleh disalin kalau mahu */
+      -webkit-user-select: text;
+    }
+
+    /* Blokir menu context (klik kanan) di sticky note */
+    .sticky {
+      -webkit-touch-callout: none; /* iOS long press */
     }
 
     .sticky:hover {
@@ -132,7 +149,7 @@
       box-shadow: 0 12px 28px rgba(0,0,0,0.25);
     }
 
-    /* Warna sticky disesuaikan untuk dark mode */
+    /* Warna sticky */
     .sticky.pink     { background: #ffccd5; }
     .sticky.yellow   { background: #fff9c4; }
     .sticky.mint     { background: #d4f4dd; }
@@ -268,7 +285,6 @@
     const body = document.body;
 
     if (toggleBtn && body) {
-      // Selalu mulai dari light mode
       body.setAttribute('data-theme', 'light');
       toggleBtn.textContent = '🌙';
 
@@ -277,11 +293,10 @@
         const next = current === 'dark' ? 'light' : 'dark';
         body.setAttribute('data-theme', next);
         toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
-        // Tidak ada localStorage.setItem lagi
       });
     }
 
-    // Partikel bintang (sama seperti sebelumnya, tapi lebih aman)
+    // Partikel bintang
     const canvas = document.getElementById('stars-canvas');
     if (canvas && canvas.getContext) {
       const ctx = canvas.getContext('2d');
